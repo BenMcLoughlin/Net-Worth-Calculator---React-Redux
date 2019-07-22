@@ -105,15 +105,15 @@ const initialStateLiabilities =   {
             value: 0,
     
         },
-        1: {
-            id: 1,
+        2: {
+            id: 2,
             classType: "cashAndInvestment",  
             name: "primaryResidence", 
             min: 0, 
             max: 100000, 
             step: 1000,
             label: "Primary Residence", 
-            value: 200000,
+            value: 20000,
     
         },
     },
@@ -133,7 +133,7 @@ const initialStateLiabilities =   {
             max: 100000, 
             step: 1000,
             label: "TFSA", 
-            value: 200000,
+            value: 20000,
     
         },
     },
@@ -153,7 +153,7 @@ const initialStateLiabilities =   {
             max: 1000000, 
             step: 5000,
             label: "Primary Residence", 
-            value: 200000,
+            value: 20000,
     
         },
     }
@@ -178,7 +178,7 @@ const liabilities = (state = initialStateLiabilities, action)=> {
         case "SET_VARIABLE": return {...state, 
                                                 [action.payload.classType]: {
                                                     ...state[action.payload.classType],
-                                                        [action.payload.event.id]: {
+                                                        [action.payload.event.id || null]: {
                                                             ...state[action.payload.classType][action.payload.event.id],
                                                                 value: action.payload.event.value
                                                         }

@@ -153,7 +153,7 @@ class App extends Component {
                 </SubWrapper>
                 <SubWrapper>
                     <Heading> <span>Liabilities</span> <SubHeading>What You Owe</SubHeading></Heading>
-                    {this.renderNetWorth(this.props.netWorthLiabilitiesState)}
+                    {this.renderNetWorth(this.props.netWorthAssetsState)}
                 </SubWrapper>
 
             </MainWrapper >
@@ -166,7 +166,6 @@ const mapStateToProps = (state) => {
     console.log(state);
     return {
         netWorthAssetsState: state.assets,
-        netWorthLiabilitiesState: state.liabilities,
     }
 }
 
