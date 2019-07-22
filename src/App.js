@@ -58,11 +58,10 @@ class App extends Component {
         this.setState({
             [event.target.name]: !show,
         })
-        console.log(this.state.addItemHidden)
     }
 
-    addItem = (classType) => {
-        this.props.addItem(this.state[`${classType}AddText`], this.state[`${classType}Value`], classType)
+    addItem = (classType, section) => {
+        this.props.addItem(this.state[`${classType}AddText`], this.state[`${classType}Value`], section, classType)
         this.setState({
             [`${classType}AddText`]: "",
             [`${classType}Value`]: 0,
@@ -75,7 +74,7 @@ class App extends Component {
         return valueArray.reduce((acc, num) => acc + num)
      }
 
-     renderRangeBars(state, classType) {
+     renderRangeBars(state, classType, section) {
        return (
            <div className="">
            {Object.values(state).map(a =>
@@ -85,9 +84,11 @@ class App extends Component {
                     classType={a.classType}
                     id={a.id}
                     currency={a.currency}
+                    section={a.section}
                     name={a.name}
                     value={a.value}
-                    handleChange={(event) => this.props.setVariable(event.target, a.classType)}
+                    handleChange={(event) => this.props.setVariable(event.target, a.section, a.classType)}
+                    //handleChange={(event) => console.log(a.classType)}
                     label={a.label}
                     step={a.step}
                     min={a.min}
@@ -110,7 +111,7 @@ class App extends Component {
                     rangeName={`${classType}Value`}
                     rangeValue={this.state[`${classType}Value`]}
                     percentage={`${this.state[`${classType}Value`]/100000 * 100}%`}
-                    addItem={() => this.addItem(classType)}
+                    addItem={() => this.addItem(classType, section)}
                 />
 
              </div>
@@ -136,24 +137,23 @@ class App extends Component {
                 </Header>
 
                 <Expanded open={this.state[a.title.classType]}>
-                {this.renderRangeBars(netWorthState[a.title.classType], a.title.classType)}
+                {this.renderRangeBars(netWorthState[a.title.classType], a.title.classType, a.title.section)}
                 </Expanded>
             </Container>
         )
      }
 
-    render()
-    {console.log(this.props.state);
+    render() {
         return (
             <ThemeProvider theme={darkTheme}>
             <MainWrapper >
                 <SubWrapper>
                     <Heading> <span>Assets</span> <SubHeading>What You Own</SubHeading></Heading>
-                    {this.renderNetWorth(this.props.netWorthAssetsState)}
+                    {this.renderNetWorth(this.props.netWorthState.assets)}
                 </SubWrapper>
                 <SubWrapper>
                     <Heading> <span>Liabilities</span> <SubHeading>What You Owe</SubHeading></Heading>
-                    {this.renderNetWorth(this.props.netWorthAssetsState)}
+                    {this.renderNetWorth(this.props.netWorthState.liabilities)}
                 </SubWrapper>
 
             </MainWrapper >
@@ -165,7 +165,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     console.log(state);
     return {
-        netWorthAssetsState: state.assets,
+        netWorthState: state.assets,
     }
 }
 

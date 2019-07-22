@@ -57,7 +57,7 @@ export const darkTheme = {
         accent3: '#7DA4B7',
         accent4: '#D9BB73',
         highlight1: '#ffd152',
-        highlight2: '#eab462',
+        highlight2: '#ef6c67',
         highlight3: '#55869d',
         text1: '#f4f3f2',
         text2: '#93979d',

@@ -22,6 +22,7 @@ function RangeBar(props) {
             <RangeBarStyled
                 type="range"
                 classType={props.classType}
+                section={props.section}
                 id={props.id}
                 currency={props.currency}
                 name={props.name}
@@ -100,7 +101,9 @@ export const RangeBarStyled = styled.input`
     width: 200px;
     height: 3px;
     -webkit-appearance: none;
-    background: linear-gradient(90deg, ${props => props.theme.color.highlight1} ${props => props.percentage}, ${props => props.theme.color.highlight3} ${props => props.percentage});
+    background: linear-gradient(90deg, 
+        ${props => props.section === "assets" ? props.theme.color.highlight1 : props.theme.color.highlight2} ${props => props.percentage}, 
+        ${props => props.theme.color.highlight3} ${props => props.percentage});
     outline: none;
     opacity: 0.7;
     -webkit-transition: 0.2s;
@@ -120,7 +123,7 @@ export const RangeBarStyled = styled.input`
     }
     &:active   {
         &:after{
-            background: ${props => props.theme.color.highlight1};
+            background: ${props => props.section === "assets" ? props.theme.color.highlight1 : props.theme.color.highlight2};
         }
  
         }
@@ -139,7 +142,7 @@ export const RangeBarStyled = styled.input`
 
 &:active::-webkit-slider-thumb
 {
-    background: ${props => props.theme.color.highlight1};
+    background: ${props => props.section === "assets" ? props.theme.color.highlight1 : props.theme.color.highlight2};
 }
 
 `

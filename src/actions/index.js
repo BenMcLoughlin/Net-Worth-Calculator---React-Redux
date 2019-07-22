@@ -1,9 +1,10 @@
 import _ from "lodash"
 
-export const addItem = (text, value, classType) => {
+export const addItem = (text, value, section, classType) => {
     return {
         type: "ADD_ITEM", 
         payload: {
+            section: section,
             classType: classType,
             id: (Math.random()*10000), 
             label: text,
@@ -28,10 +29,11 @@ export const removeItem = (id, classType) => {
 }
 
 
-export const setVariable = (event, classType) => {
+export const setVariable = (event, section, classType) => {
     return {
         type: "SET_VARIABLE",
         payload: {
+            section: section, 
             classType: classType,
             event: event
         }
