@@ -30,7 +30,7 @@ export const removeItem = (id, classType) => {
 
 export const setVariable = (event, classType) => {
     return {
-        type: "SET_ASSET_VARIABLE",
+        type: "SET_VARIABLE",
         payload: {
             classType: classType,
             event: event

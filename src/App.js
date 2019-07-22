@@ -171,6 +171,9 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {addItem, removeItem, setVariable})(App)
 
+
+
+
 //-------------STYLES-------------------------------------------
 
 const Heading = styled.div`
