@@ -22,24 +22,6 @@ const initialStateAssets =   {
             value: 200000,
     
         },
-        2: {
-            id: 2,
-            classType: "cashAndInvestment",  
-            name: "vehicle", 
-            min: 0, 
-            max: 100000, 
-            label: "vehicle", 
-            value: 22000,
-        },
-        3: {
-            id: 3,
-            classType: "cashAndInvestment",  
-            name: "hat", 
-            min: 0, 
-            max: 100000, 
-            label: "hat",
-            value: 200,
-        }
     },
     retirement: {
         title: {
@@ -60,24 +42,6 @@ const initialStateAssets =   {
             value: 200000,
     
         },
-        5: {
-            id: 5,
-            classType: "retirement",  
-            name: "RRSP", 
-            min: 0, 
-            max: 100000, 
-            label: "rrsp", 
-            value: 22000,
-        },
-        6: {
-            id: 6,
-            classType: "retirement",  
-            name: "nonReg", 
-            min: 0, 
-            max: 100000, 
-            label: "Non-reg",
-            value: 200,
-        }
     },
     property: {
         title: {
@@ -98,26 +62,6 @@ const initialStateAssets =   {
             value: 200000,
     
         },
-        8: {
-            id: 8,
-            classType: "property",  
-            name: "rental1", 
-            min: 0, 
-            max: 1000000, 
-            step: 5000,
-            label: "Rental 1", 
-            value: 22000,
-        },
-        9: {
-            id: 9,
-            classType: "property",  
-            name: "rental2", 
-            min: 0, 
-            max: 1000000, 
-            step: 5000,
-            label: "Rental 2",
-            value: 20000,
-        }
     }
 
 

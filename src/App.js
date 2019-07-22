@@ -131,10 +131,17 @@ class App extends Component {
     {
         return (
             <ThemeProvider theme={darkTheme}>
-            <Wrapper >
-            <Heading> <span>Assets</span> <SubHeading>What You Own</SubHeading></Heading>
-                 {this.renderNetWorth(this.props.netWorthAssetsState)}
-            </Wrapper >
+            <MainWrapper >
+                <SubWrapper>
+                    <Heading> <span>Assets</span> <SubHeading>What You Own</SubHeading></Heading>
+                    {this.renderNetWorth(this.props.netWorthAssetsState)}
+                </SubWrapper>
+                <SubWrapper>
+                    <Heading> <span>Assets</span> <SubHeading>What You Own</SubHeading></Heading>
+                    {this.renderNetWorth(this.props.netWorthAssetsState)}
+                </SubWrapper>
+
+            </MainWrapper >
             </ThemeProvider>
         )
     }
@@ -164,7 +171,7 @@ const SubHeading = styled.div`
     margin-left: 2rem;
 `
 
-const Wrapper = styled.div`
+const MainWrapper = styled.div`
     margin: 10rem auto;
     font-family: 'Lato', sans-serif;
     width: 100rem;
@@ -173,11 +180,15 @@ const Wrapper = styled.div`
     padding: 4rem;
     display: flex;
     justify-content: space-around;
-    flex-direction: column;
+    flex-direction: row;
    
 `
+const SubWrapper = styled.div`
+    width: 45%;
+`
+
+
 const Container = styled.div`
-    width: 40%;
     background-color: ${props => props.theme.color.background2};
     overflow: hidden;
 `

@@ -53,7 +53,7 @@ export const RangebarContainerStyled = styled.div `
 
 export const RangeBarValueStyled = styled.input`
         position: absolute;
-        left: 24rem;
+        left: 100%;
         border-radius: 1px;
         padding: .6rem;
         height: 1.3rem;
@@ -111,7 +111,7 @@ export const RangeBarStyled = styled.input`
     &:after {
         content: "";
             top: 1.8rem;
-            right: -6rem;
+            right: -31%;
             height: 1rem;
             width: 8rem;
             background: transparent;
