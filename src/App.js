@@ -17,6 +17,7 @@ import AddContainer from "./components/AddContainer"
 class App extends Component {
 
     state = {
+        //Asset State
         cashAndInvestmentAddText: "",
         retirementAddText: "",
         propertyAddText: "",
@@ -29,6 +30,20 @@ class App extends Component {
         cashAndInvestment: true,
         retirement: false,
         property: false,
+
+        //Liability State
+        unsecuredDebtAddText: "",
+        securedDebtAddText: "",
+        otherDebtAddText: "",
+        unsecuredDebtValue: 0,
+        securedDebtValue: 0,
+        otherDebtValue: 0,
+        unsecuredDebtAddButtonHidden: true,
+        securedDebtAddButtonHidden: false,
+        otherDebtAddButtonHidden: true,
+        unsecuredDebt: true,
+        securedDebt: false,
+        otherDebt: false,
     }
 
     handleLocalStateChange= (e) => {
@@ -137,7 +152,7 @@ class App extends Component {
                     {this.renderNetWorth(this.props.netWorthAssetsState)}
                 </SubWrapper>
                 <SubWrapper>
-                    <Heading> <span>Assets</span> <SubHeading>What You Own</SubHeading></Heading>
+                    <Heading> <span>Liabilities</span> <SubHeading>What You Owe</SubHeading></Heading>
                     {this.renderNetWorth(this.props.netWorthAssetsState)}
                 </SubWrapper>
 
