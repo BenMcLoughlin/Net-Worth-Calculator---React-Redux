@@ -1,29 +1,42 @@
 import React from 'react'
 import styled, {css} from "styled-components"
+import {Minus} from "styled-icons/evil/Minus"
 
+const percentageHelper = (value, max) => {
+    const percentageValue = value/max;
+    const color = `linear-gradient(90deg, rgb(117,252,117)` + percentageValue +`%, rgba(214,214,214)` + percentageValue + `%)`;
+    return color
+}
 
 function RangeBar(props) {
     return (
         <RangebarContainerStyled>
-        <RangeBarStyled
-            type="range"
-            classType={props.classType}
-            id={props.id}
-            currency={props.currency}
-            name={props.name}
-            value={props.value}
-            onChange={props.handleChange}
-            label={props.label}
-            step={props.step}
-            min={props.min}
-            max={props.max}
-            newItem={props.newItem}
-            step={props.value < 1000 ? 100 : props.value < 100000 ? 1000 : props.value < 100000 ? 10000 : 1}
-            />
-            <Close onClick={props.close}>x</Close>
-        <RangeBarValueStyled>{props.value}</RangeBarValueStyled>
+            <RangeBarValueStyled 
+                type="number" 
+                value={props.value}
+                name={props.name}
+                id={props.id}
+                onChange={props.handleChange}
+                ></RangeBarValueStyled>
         
-        <RangeBarLabelStyled>{props.label}</RangeBarLabelStyled> 
+            <RangeBarStyled
+                type="range"
+                classType={props.classType}
+                id={props.id}
+                currency={props.currency}
+                name={props.name}
+                value={props.value}
+                label={props.label}
+                min={props.min}
+                max={props.max}
+                step={props.value < 1000 ? 100 : props.value < 100000 ? 1000 : props.value < 100000 ? 10000 : 1}
+                percentage={props.percentage}
+                onChange={props.handleChange}
+                />
+            
+        
+
+        <RangeBarLabelStyled>{props.label}</RangeBarLabelStyled>
     </RangebarContainerStyled>
     )
 }
@@ -32,97 +45,123 @@ function RangeBar(props) {
 export default RangeBar
 
 export const RangebarContainerStyled = styled.div `
-    margin-top: 2rem;
+    margin-top: 1rem;
     position: relative;
     padding-left: 1rem;
     width: 25rem;
-` 
+`
 
+export const RangeBarValueStyled = styled.input`
+        position: absolute;
+        left: 24rem;
+        border-radius: 1px;
+        padding: .6rem;
+        height: 1.3rem;
+        font-size: ${props => props.theme.fontSize.smallest};
+        width: 7rem;
+        align-content: center;
+        text-align: center;
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: ${props => props.theme.color.background3};
+        z-index: 23;
+        outline: none;
+        ::-webkit-inner-spin-button, 
+        ::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+}
+        &:before {
+            content: "";
+            height: 1rem;
+            width: 1rem;
+            background: ${props => props.theme.color.background3};
+            position: absolute;
+            transform: rotate(45deg);
+            left: -.5rem;
+        };
+        &:focus {
+           border-bottom: 3px solid ${props => props.theme.color.highlight1};
+           
+        }
+
+`
+/*
+1. &:active + RangeBarValueStyled 
+2. &:active + ~ ${RangeBarValueStyled}
+
+*/
 
 export const RangeBarStyled = styled.input`
 
-    height: 2.8rem;
+    width: 200px;
+    height: 3px;
     -webkit-appearance: none;
+    background: linear-gradient(90deg, ${props => props.theme.color.highlight1} ${props => props.percentage}, ${props => props.theme.color.highlight3} ${props => props.percentage});
     outline: none;
-    background-color: transparent;
-    transition: all .3s;
-    -webkit-appearance: none;
-    width: 18rem;
-    &:active + &__value {
-        box-sizing: border-box;
-        border-bottom: 4px solid #588ca5;
-        z-index: 1;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    border-radius: 12px;
+    margin-top: 1.3rem;
+    margin-bottom: 2rem;
+    transition: all 1s ease;
+    &:after {
+        content: "";
+            top: 1.8rem;
+            right: -6rem;
+            height: 1rem;
+            width: 8rem;
+            background: transparent;
+            position: absolute;
+            z-index: 3;
     }
+    &:active   {
+        &:after{
+            background: ${props => props.theme.color.highlight1};
+        }
+ 
+        }
 
-
-&::-webkit-slider-runnable-track{
-
-    background-color: #588ca5;
-    height: 3px; //track width
-    border-radius: 4px;
-    z-index: 2;
-}
-
-&:active::-webkit-slider-runnable-track {
-    background-color: #588ca5;
-    z-index: 2;
-}
+    
 
 &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background-color: #588ca5;
-    width: 2.2rem;
-    height: 2.2rem;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: ${props => props.theme.color.highlight3};
     border-radius: 50%;
-    margin-top: -1rem; //thumbheight
     cursor: pointer;
-    border: 2px solid #fff;
-    transition: .3s;
-    z-index: 2;
 }
-&:active::-webkit-slider-thumb  {
-    background-color: red;
-    z-index: 2;;
+
+&:active::-webkit-slider-thumb
+{
+    background: ${props => props.theme.color.highlight1};
 }
 
 `
 
-export const RangeBarValueStyled = styled.div`
-        position: absolute;
-        top: -2rem;
-        left: 21rem;
-        border-radius: 1px;
-        background-color: #272f33;
-        padding: .8rem;
-        height: 2rem;
-        font-size: 1rem;
-        width: 3rem;
-        align-content: center;
-        text-align: center;
-        right: 4rem;
-        z-index: 1;
-        color: white;
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-`
+
 
 export const RangeBarLabelStyled = styled.div`
-        color: #646c79;
-        font-size: 1.2rem;
+        font-size: ${props => props.theme.fontSize.small};
+        color: ${props => props.theme.color.background3};
         position: absolute;
-        top: -1.2rem;
+        top: -.6rem;
         left: 3rem;
         text-transform: capitalize;
+
 `
 
-const Close = styled.div`
-    color: #646c79;
-    position: absolute;
-    top: -1.8rem;
-    right: -0.5rem;
+const Close = styled(Minus)`
+    color: ${props => props.theme.color.background4};
+    height: 1.5rem;
+    width: 1.5rem;
+
     &:hover {
         cursor: pointer;
     }

@@ -1,10 +1,10 @@
 import _ from "lodash"
 
-export const addItem = (text, value) => {
+export const addItem = (text, value, classType) => {
     return {
         type: "ADD_ITEM", 
         payload: {
-            classType: "netWorthAssets",
+            classType: classType,
             id: (Math.random()*10000), 
             label: text,
             name: _.camelCase(text),
@@ -17,18 +17,24 @@ export const addItem = (text, value) => {
 }
 }
 
-export const removeItem = (id) => {
+export const removeItem = (id, classType) => {
     return {
         type: "REMOVE_ITEM", 
-        payload: id,
+        payload: {
+            classType: classType,
+            id: id,
+        }
 }
 }
 
 
-export const setVariable = (event) => {
+export const setVariable = (event, classType) => {
     return {
         type: "SET_VARIABLE",
-        payload: event.target
+        payload: {
+            classType: classType,
+            event: event
+        }
     }
 }
 
