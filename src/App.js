@@ -125,7 +125,7 @@ class App extends Component {
 
      renderNetWorth (netWorthState) {
         return Object.values(netWorthState).map( a => 
-            <Container>
+            <Container key={a.id}>
                 <Header onClick={(event) => this.toggleItem(event)}>
                     <Button name={a.title.classType} > 
                         <Arrow open={this.state[a.title.classType]}/> 
@@ -143,7 +143,7 @@ class App extends Component {
      }
 
     render()
-    {
+    {console.log(this.props.state);
         return (
             <ThemeProvider theme={darkTheme}>
             <MainWrapper >
@@ -153,7 +153,7 @@ class App extends Component {
                 </SubWrapper>
                 <SubWrapper>
                     <Heading> <span>Liabilities</span> <SubHeading>What You Owe</SubHeading></Heading>
-                    {this.renderNetWorth(this.props.netWorthAssetsState)}
+                    {this.renderNetWorth(this.props.netWorthLiabilitiesState)}
                 </SubWrapper>
 
             </MainWrapper >
@@ -166,6 +166,7 @@ const mapStateToProps = (state) => {
     console.log(state);
     return {
         netWorthAssetsState: state.assets,
+        netWorthLiabilitiesState: state.liabilities,
     }
 }
 
